@@ -1,6 +1,6 @@
 # e-Cuti: legacy classic ASP module for training
 
-e-Cuti is a small staff leave application system written in classic ASP with a SQL Server database. It is the legacy module for Day 2 of the AI-Driven Software Development Workshop, where participants migrate it to ASP.NET Core Web API and React.
+e-Cuti is a small staff leave application system written in classic ASP with a SQL Server database. It is the legacy ASP Application of the AI-Driven Software Development Workshop, where participants migrate it to ASP.NET Core Web API and React.
 
 The system is invented for training. No code or data comes from a real system. Every person, identity number and password in the database is made up. The code holds deliberate defects and security weaknesses for participants to find. Do not use it for real work.
 
@@ -21,7 +21,7 @@ The migrated application goes into this same repository: the ASP.NET Core API in
 In a Code tab session in a new, empty folder:
 
 ```text
-Clone https://github.com/sooyewguan/day2 directly into this folder, not into a subfolder. Then remove the remote that points to sooyewguan/day2, create a private GitHub repository named day2 under my account from this folder, add it as the origin remote and push. Create the triage labels listed in docs/agents/triage-labels.md in that repository.
+Clone https://github.com/sooyewguan/sample-asp directly into this folder, not into a subfolder. Then remove the remote that points to sooyewguan/day2, create a private GitHub repository named day2 under my account from this folder, add it as the origin remote and push. Create the triage labels listed in docs/agents/triage-labels.md in that repository.
 ```
 
 ## Database setup
