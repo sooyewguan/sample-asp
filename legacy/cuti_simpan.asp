@@ -67,7 +67,7 @@ rs.Close
 ' --- had Cuti Kecemasan : 5 hari setahun
 If kod = "CK" Then
 	Set rs = conn.Execute("SELECT ISNULL(SUM(BilHari),0) AS Jum FROM tblPermohonanCuti WHERE NoStaf='" & noStaf & "' AND KodCuti='CK' AND Status IN ('B','L') AND YEAR(TarikhMula)=" & tahun)
-	If rs("Jum") + bil > 5 Then
+	If Nombor(rs("Jum")) + bil > 5 Then
 		rs.Close
 		Call Balik("Had Cuti Kecemasan ialah 5 hari setahun.")
 	End If
@@ -77,7 +77,7 @@ End If
 ' --- had Cuti Tanpa Gaji : 30 hari setahun
 If kod = "CTG" Then
 	Set rs = conn.Execute("SELECT ISNULL(SUM(BilHari),0) AS Jum FROM tblPermohonanCuti WHERE NoStaf='" & noStaf & "' AND KodCuti='CTG' AND Status IN ('B','L') AND YEAR(TarikhMula)=" & tahun)
-	If rs("Jum") + bil > 30 Then
+	If Nombor(rs("Jum")) + bil > 30 Then
 		rs.Close
 		Call Balik("Had Cuti Tanpa Gaji ialah 30 hari setahun.")
 	End If

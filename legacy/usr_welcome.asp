@@ -36,7 +36,7 @@ If rs.EOF Then
 End If
 Do While Not rs.EOF
 	bakiS = BakiSemasa(Session("NoStaf"), tahun, Trim(rs("KodCuti")))
-	proses = rs("Kelayakan") + rs("BakiBawaHadapan") - rs("Diambil") - bakiS
+	proses = Nombor(rs("Kelayakan")) + Nombor(rs("BakiBawaHadapan")) - Nombor(rs("Diambil")) - bakiS
 %>
 <tr>
 	<td><%=rs("Keterangan")%></td>

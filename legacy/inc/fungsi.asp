@@ -41,6 +41,16 @@ Function BacaTarikh(s)
 	On Error GoTo 0
 End Function
 
+' Tukar nilai decimal dari pangkalan data kepada nombor VBScript.
+' ADO pulangkan lajur decimal sebagai Decimal, dan VBScript tidak boleh mengira dengannya.
+Function Nombor(x)
+	If IsNull(x) Then
+		Nombor = 0
+	Else
+		Nombor = CDbl(x)
+	End If
+End Function
+
 ' nombor -> teks untuk SQL (elak koma perpuluhan)
 Function AngkaSQL(x)
 	AngkaSQL = Replace(CStr(x), ",", ".")
@@ -113,7 +123,7 @@ Function BakiSemasa(noStaf, tahun, kod)
 		Set rsB = Nothing
 		Exit Function
 	End If
-	baki = rsB("Kelayakan") + rsB("BakiBawaHadapan") - rsB("Diambil")
+	baki = Nombor(rsB("Kelayakan")) + Nombor(rsB("BakiBawaHadapan")) - Nombor(rsB("Diambil"))
 	rsB.Close
 
 	sqlB = "SELECT ISNULL(SUM(BilHari),0) AS Jum FROM tblPermohonanCuti WHERE NoStaf='" & noStaf & "' AND Status='B' AND YEAR(TarikhMula)=" & tahun
@@ -123,7 +133,7 @@ Function BakiSemasa(noStaf, tahun, kod)
 		sqlB = sqlB & " AND KodCuti='" & kb & "'"
 	End If
 	Set rsB = conn.Execute(sqlB)
-	baki = baki - rsB("Jum")
+	baki = baki - Nombor(rsB("Jum"))
 	rsB.Close
 	Set rsB = Nothing
 

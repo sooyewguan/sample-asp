@@ -29,7 +29,7 @@ ket = rs("Keterangan")
 kod = Trim(rs("KodCuti"))
 dMula = rs("TarikhMula")
 dAkhir = rs("TarikhAkhir")
-bil = rs("BilHari")
+bil = Nombor(rs("BilHari"))
 sebab = rs("Sebab")
 dMohon = rs("TarikhMohon")
 rs.Close

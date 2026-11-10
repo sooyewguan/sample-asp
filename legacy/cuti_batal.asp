@@ -19,7 +19,7 @@ jumpa = Not rs.EOF
 If jumpa Then
 	st = Trim(rs("Status"))
 	kod = Trim(rs("KodCuti"))
-	bil = rs("BilHari")
+	bil = Nombor(rs("BilHari"))
 	dMula = rs("TarikhMula")
 End If
 rs.Close
