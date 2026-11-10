@@ -6,10 +6,23 @@ The system is invented for training. No code or data comes from a real system. E
 
 ## Contents
 
-| Folder | Contents |
+| Path | Contents |
 | --- | --- |
 | `legacy/` | 14 `.asp` pages, 5 include files in `inc/`, `global.asa`, `misc.js`, `Loader/d_loader.js`, `css/style.css` |
 | `database/ecuti_db.sql` | Creates database `LegacyDb` with 7 tables, 1 stored procedure and the seed rows |
+| `.claude/skills/` | The 14 Matt Pocock skills the workshop uses, copied from [mattpocock/skills](https://github.com/mattpocock/skills) at commit `4ae2317` under its MIT licence. `grilling` has the workshop's one-question line added at the end |
+| `.claude/settings.json` | A deny rule that stops Claude from editing `legacy/` |
+| `CLAUDE.md`, `docs/agents/` | What `/setup-matt-pocock-skills` writes: GitHub issues as the tracker, the five default triage labels, one `GLOSSARY.md` |
+
+The migrated application goes into this same repository: the ASP.NET Core API in `server/` and the React app in `client/`.
+
+## Getting your own copy
+
+In a Code tab session in a new, empty folder:
+
+```text
+Clone https://github.com/sooyewguan/day2 into this folder. Then create a private GitHub repository under my account from it, set it as the origin remote and push. Create the triage labels listed in docs/agents/triage-labels.md in that repository.
+```
 
 ## Database setup
 

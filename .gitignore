@@ -1,0 +1,22 @@
+# .NET
+bin/
+obj/
+.vs/
+*.user
+*.suo
+
+# Node
+node_modules/
+dist/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Workshop: local connection files, never committed
+.mcp.json
+dab-config.json
+.agents/
+skills-lock.json
+.claude/settings.local.json
+*.bak
