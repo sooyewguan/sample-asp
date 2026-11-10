@@ -1,0 +1,27 @@
+<SCRIPT LANGUAGE="VBScript" RUNAT="Server">
+' ------------------------------------------------------------
+' e-Cuti : Sistem Permohonan Cuti Kakitangan
+' global.asa
+' ------------------------------------------------------------
+
+Sub Application_OnStart
+	Application("NamaSistem") = "e-Cuti"
+	Application("Versi") = "2.3"
+	Application("BilPengguna") = 0
+End Sub
+
+Sub Session_OnStart
+	Session.Timeout = 20
+	Session("NoStaf") = ""
+	Application.Lock
+	Application("BilPengguna") = Application("BilPengguna") + 1
+	Application.UnLock
+End Sub
+
+Sub Session_OnEnd
+	Application.Lock
+	Application("BilPengguna") = Application("BilPengguna") - 1
+	Application.UnLock
+End Sub
+
+</SCRIPT>

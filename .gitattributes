@@ -1,0 +1,3 @@
+* text=auto
+*.asp text eol=crlf
+*.asa text eol=crlf
