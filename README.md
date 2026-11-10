@@ -21,7 +21,7 @@ The migrated application goes into this same repository: the ASP.NET Core API in
 In a Code tab session in a new, empty folder:
 
 ```text
-Clone https://github.com/sooyewguan/day2 into this folder. Then create a private GitHub repository under my account from it, set it as the origin remote and push. Create the triage labels listed in docs/agents/triage-labels.md in that repository.
+Clone https://github.com/sooyewguan/day2 directly into this folder, not into a subfolder. Then remove the remote that points to sooyewguan/day2, create a private GitHub repository named day2 under my account from this folder, add it as the origin remote and push. Create the triage labels listed in docs/agents/triage-labels.md in that repository.
 ```
 
 ## Database setup
@@ -31,7 +31,7 @@ The script runs on the Day 1 container `sql-workshop`, which is SQL Server 2025 
 In a Code tab session, with this repository as the project folder:
 
 ```text
-Run database/ecuti_db.sql in sql-workshop to create database LegacyDb. In LegacyDb make workshop_app db_owner, and give workshop_mcp read-only access and VIEW DEFINITION on schema dbo. Don't print the passwords.
+Run database/ecuti_db.sql in sql-workshop as sa, with the password in WS_SQL_SA_PASSWORD, to create database LegacyDb. In LegacyDb make workshop_app db_owner, and give workshop_mcp read-only access and VIEW DEFINITION on schema dbo. Don't print the passwords.
 ```
 
 Expected row counts:
