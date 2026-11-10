@@ -18,5 +18,5 @@ Thumbs.db
 dab-config.json
 .agents/
 skills-lock.json
-.claude/settings.local.json
+.claude/
 *.bak
