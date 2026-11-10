@@ -37,7 +37,7 @@ Expected row counts:
 
 Classic ASP runs only on IIS on Windows. The connection string is in `legacy/inc/conn.asp`, with the placeholder `TUKAR_KATA_LALUAN_DI_SINI` where the password of `workshop_app` goes. Do not commit a real password.
 
-The pages have not yet been run on IIS. A setup script for IIS is not part of this repository yet.
+The pages connect with the provider `SQLOLEDB`, which is built into Windows. A first run on IIS on 10 November 2026 confirmed that this provider connects to SQL Server 2025 Express in `sql-workshop`: the login, Senarai Permohonan and Mohon Cuti pages loaded. The other pages are still being checked, see the issues. A setup script for IIS is not part of this repository yet.
 
 ## Test logins
 
