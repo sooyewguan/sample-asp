@@ -21,7 +21,7 @@ The migrated application goes into this same repository: the ASP.NET Core API in
 In a Code tab session in a new, empty folder:
 
 ```text
-Clone https://github.com/sooyewguan/sample-asp directly into this folder, not into a subfolder. Then remove the remote that points to sooyewguan/day2, create a private GitHub repository named day2 under my account from this folder, add it as the origin remote and push. Create the triage labels listed in docs/agents/triage-labels.md in that repository.
+Clone https://github.com/sooyewguan/sample-asp directly into this folder, not into a subfolder. Then remove the remote that points to sample-asp, create a private GitHub repository named sample-asp under my account from this folder, add it as the origin remote and push. Create the triage labels listed in docs/agents/triage-labels.md in that repository.
 ```
 
 ## Database setup
