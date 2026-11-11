@@ -16,7 +16,9 @@ The migrated application goes into this same repository: the ASP.NET Core API in
 
 ## Getting your own copy
 
-In a Code tab session in a new, empty folder:
+Each participant works in a private copy, not a fork: a fork of this public repository would be public too. The project folder is the folder of the Code tab environment, for example an empty `ecuti` folder in Documents, and the copy goes straight into it.
+
+In a Code tab session started from that environment:
 
 ```text
 Clone https://github.com/sooyewguan/sample-asp directly into this folder, not into a subfolder. Then remove the remote that points to sample-asp, create a private GitHub repository named sample-asp under my account from this folder, add it as the origin remote and push. Create the triage labels listed in docs/agents/triage-labels.md in that repository.
@@ -24,13 +26,18 @@ Clone https://github.com/sooyewguan/sample-asp directly into this folder, not in
 
 ## Database setup
 
-The script runs on the Day 1 container `sql-workshop`, which is SQL Server 2025 Express, the free edition. It creates `LegacyDb` if it does not exist, and drops and recreates the e-Cuti objects if it does.
+The script runs on the Day 1 container `sql-workshop`, which is SQL Server 2025 Express, the free edition. It creates `LegacyDb` if it does not exist, and drops and recreates the e-Cuti objects if it does. The passwords come from the environment variables `WS_SQL_SA_PASSWORD`, `WS_SQL_APP_PASSWORD` and `WS_SQL_MCP_PASSWORD` saved in the Code tab environment.
 
 In a Code tab session, with this repository as the project folder:
 
 ```text
-Run database/ecuti_db.sql in sql-workshop as sa, with the password in WS_SQL_SA_PASSWORD, to create database LegacyDb. In LegacyDb make workshop_app db_owner, and give workshop_mcp read-only access and VIEW DEFINITION on schema dbo. Don't print the passwords.
+In sql-workshop, create two logins: workshop_app with the password in WS_SQL_APP_PASSWORD, and workshop_mcp with the password in WS_SQL_MCP_PASSWORD. Then run database/ecuti_db.sql as sa, with the password in WS_SQL_SA_PASSWORD, to create database LegacyDb. In LegacyDb make workshop_app db_owner, and give workshop_mcp read-only access and VIEW DEFINITION on schema dbo. Don't print the passwords.
 ```
+
+| Login | Used by |
+| --- | --- |
+| `workshop_app` | EF Core, the migrated app, and legacy e-Cuti on IIS |
+| `workshop_mcp` | SQL MCP Server: reads rows and table definitions, and cannot change anything |
 
 Expected row counts:
 
@@ -46,9 +53,17 @@ Expected row counts:
 
 ## Running the legacy pages
 
-Classic ASP runs only on IIS on Windows. The connection string is in `legacy/inc/conn.asp`, with the placeholder `TUKAR_KATA_LALUAN_DI_SINI` where the password of `workshop_app` goes. Do not commit a real password.
+Classic ASP runs only on IIS on Windows. The connection string is in `legacy/inc/conn.asp`, with the placeholder `TUKAR_KATA_LALUAN_DI_SINI` where the password of `workshop_app` goes. IIS can't read the Code tab's environment variables, so the password has to be in `conn.asp`. To keep it out of git, IIS serves a copy of `legacy/` from `C:\inetpub\ecuti`, and only that copy holds the password. `legacy/inc/conn.asp` in this repository keeps the placeholder: never put a real password in it.
 
-The pages connect with the provider `SQLOLEDB`, which is built into Windows. A first run on IIS on 10 November 2026 confirmed that this provider connects to SQL Server 2025 Express in `sql-workshop`: the login, Senarai Permohonan and Mohon Cuti pages loaded. The other pages are still being checked, see the issues. A setup script for IIS is not part of this repository yet.
+In a Code tab session, with this repository as the project folder:
+
+```text
+Set up legacy e-Cuti on IIS at http://localhost:8080. Serve a copy of legacy/ from C:\inetpub\ecuti, with the workshop_app password from WS_SQL_APP_PASSWORD in the copy's conn.asp. Don't change anything in this project or print the password. Ask me to approve any step that needs administrator rights.
+```
+
+Approve each Windows administrator prompt. Then open `http://localhost:8080` and log in with a test login below.
+
+The pages connect with the provider `SQLOLEDB`, which is built into Windows. A first run on IIS on 10 November 2026 confirmed that this provider connects to SQL Server 2025 Express in `sql-workshop`: the login, Senarai Permohonan and Mohon Cuti pages loaded. The other pages are still being checked, see the issues.
 
 ## Test logins
 
