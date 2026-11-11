@@ -8,33 +8,32 @@ The system is invented for training. No code or data comes from a real system. E
 
 | Path | Contents |
 | --- | --- |
-| `*.asp` | 14 pages |
-| `inc/` | 5 include files. `inc/conn.asp` holds the connection string |
-| `global.asa`, `misc.js`, `Loader/d_loader.js`, `css/style.css` | Application events, scripts and styles |
-| `ecuti_db.sql` | Creates database `LegacyDb` with 7 tables, 1 stored procedure and the seed rows |
+| `legacy/` | 14 `.asp` pages, 5 include files in `inc/` (`inc/conn.asp` holds the connection string), `global.asa`, `misc.js`, `Loader/d_loader.js`, `css/style.css` |
+| `database/ecuti_db.sql` | Creates database `LegacyDb` with 7 tables, 1 stored procedure and the seed rows |
 
 ## Cloning it for the workshop
 
-Each participant works in their own project folder, for example an empty `ecuti` folder in Documents, used as the folder of the Code tab environment. This repository goes into a `legacy` subfolder of that project. The migrated application goes beside it: the API in `server/` and the React app in `client/`.
+Each participant works in their own project folder, for example an empty `ecuti` folder in Documents, used as the folder of the Code tab environment. This repository is cloned straight into that folder. The migrated application goes beside `legacy/`: the API in `server/` and the React app in `client/`.
 
 ```text
 ecuti/
-  legacy/       this repository: the .asp pages and ecuti_db.sql
+  legacy/       from this repository: the .asp pages
+  database/     from this repository: ecuti_db.sql
   server/       ASP.NET Core Web API, created in the workshop
   client/       React app, created in the workshop
 ```
 
 The participant's project is a private repository of their own, not a fork. A fork of this public repository would be public too.
 
-In a Code tab session started from the project folder, send:
+In a Code tab session started from the empty project folder, send:
 
 ```text
-Clone https://github.com/sooyewguan/sample-asp into a folder named legacy inside this folder, then delete legacy/.git so the files belong to this project. In this folder, write a .gitignore that lists .mcp.json, dab-config.json, .claude/, .agents/, skills-lock.json and *.bak, and a .gitattributes with *.asp text eol=crlf and *.asa text eol=crlf. Write a CLAUDE.md that says: legacy/ is migrated to an ASP.NET Core API in server/ and a React app in client/; nothing in legacy/ changes; LegacyDb keeps its tables and its data; before you save anything to auto memory or change CLAUDE.md, tell me what you want to save and ask me first. Then make this folder a git repository, commit everything with the message: Add legacy e-Cuti, create a private GitHub repository named ecuti under my account from this folder, add it as the origin remote and push.
+Clone https://github.com/sooyewguan/sample-asp directly into this folder, not into a subfolder, then delete its .git folder so the files belong to this project. In this folder, write a .gitignore that lists .mcp.json, dab-config.json, .claude/, .agents/, skills-lock.json and *.bak, and a .gitattributes with *.asp text eol=crlf and *.asa text eol=crlf. Write a CLAUDE.md that says: legacy/ is migrated to an ASP.NET Core API in server/ and a React app in client/; nothing in legacy/ changes; LegacyDb keeps its tables and its data; before you save anything to auto memory or change CLAUDE.md, tell me what you want to save and ask me first. Then make this folder a git repository, commit everything with the message: Add legacy e-Cuti, create a private GitHub repository named ecuti under my account from this folder, add it as the origin remote and push.
 ```
 
 Check afterwards:
 
-- The project folder holds `legacy`, `.gitignore`, `.gitattributes` and `CLAUDE.md`, and `legacy` holds `ecuti_db.sql`.
+- The project folder holds `legacy`, `database`, `.gitignore`, `.gitattributes` and `CLAUDE.md`, and `database` holds `ecuti_db.sql`.
 - The repository `ecuti` on GitHub is under your account, is private, and its latest commit is `Add legacy e-Cuti`.
 
 The triage labels and `docs/agents/` come later, from `/setup-matt-pocock-skills` in Day 1 Session 2.
@@ -48,7 +47,7 @@ The script runs on the workshop container `sql-workshop`, which is SQL Server 20
 In a Code tab session started from the project folder, send:
 
 ```text
-In sql-workshop, create two logins: workshop_app with the password in WS_SQL_APP_PASSWORD, and workshop_mcp with the password in WS_SQL_MCP_PASSWORD. Then run legacy/ecuti_db.sql as sa, with the password in WS_SQL_SA_PASSWORD, to create database LegacyDb. In LegacyDb make workshop_app db_owner, and give workshop_mcp read and write access to the data and VIEW DEFINITION on schema dbo. Don't print the passwords.
+In sql-workshop, create two logins: workshop_app with the password in WS_SQL_APP_PASSWORD, and workshop_mcp with the password in WS_SQL_MCP_PASSWORD. Then run database/ecuti_db.sql as sa, with the password in WS_SQL_SA_PASSWORD, to create database LegacyDb. In LegacyDb make workshop_app db_owner, and give workshop_mcp read and write access to the data and VIEW DEFINITION on schema dbo. Don't print the passwords.
 ```
 
 | Login | Used by |
@@ -70,7 +69,7 @@ Expected row counts after the script runs:
 
 ## Running the legacy pages
 
-Classic ASP runs only on IIS on Windows. The connection string is in `inc/conn.asp`, with the placeholder `TUKAR_KATA_LALUAN_DI_SINI` where the `workshop_app` password goes. IIS can't read the Code tab's environment variables, so the password has to be written into `conn.asp`. To keep it out of git, IIS serves a copy of `legacy/` from `C:\inetpub\ecuti`, and only that copy holds the password. Never put a real password in `legacy/inc/conn.asp`.
+Classic ASP runs only on IIS on Windows. The connection string is in `legacy/inc/conn.asp`, with the placeholder `TUKAR_KATA_LALUAN_DI_SINI` where the `workshop_app` password goes. IIS can't read the Code tab's environment variables, so the password has to be written into `conn.asp`. To keep it out of git, IIS serves a copy of `legacy/` from `C:\inetpub\ecuti`, and only that copy holds the password. Never put a real password in `legacy/inc/conn.asp`.
 
 In a Code tab session started from the project folder, send:
 
