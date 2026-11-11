@@ -29,13 +29,15 @@ The participant's project is a private repository of their own, not a fork. A fo
 In a Code tab session started from the project folder, send:
 
 ```text
-Clone https://github.com/sooyewguan/sample-asp into a folder named legacy inside this folder, then delete legacy/.git so the files belong to this project. Make this folder a git repository, commit everything as "Add legacy e-Cuti", create a private GitHub repository named ecuti under my account from this folder, add it as the origin remote and push.
+Clone https://github.com/sooyewguan/sample-asp into a folder named legacy inside this folder, then delete legacy/.git so the files belong to this project. In this folder, write a .gitignore that lists .mcp.json, dab-config.json, .claude/, .agents/, skills-lock.json and *.bak, and a .gitattributes with *.asp text eol=crlf and *.asa text eol=crlf. Write a CLAUDE.md that says: legacy/ is migrated to an ASP.NET Core API in server/ and a React app in client/; nothing in legacy/ changes; LegacyDb keeps its tables and its data; before you save anything to auto memory or change CLAUDE.md, tell me what you want to save and ask me first. Then make this folder a git repository, commit everything with the message: Add legacy e-Cuti, create a private GitHub repository named ecuti under my account from this folder, add it as the origin remote and push.
 ```
 
 Check afterwards:
 
-- `legacy/ecuti_db.sql` and `legacy/default.asp` are in the project folder.
-- The new repository on GitHub is private and shows the `legacy` folder.
+- The project folder holds `legacy`, `.gitignore`, `.gitattributes` and `CLAUDE.md`, and `legacy` holds `ecuti_db.sql`.
+- The repository `ecuti` on GitHub is under your account, is private, and its latest commit is `Add legacy e-Cuti`.
+
+The triage labels and `docs/agents/` come later, from `/setup-matt-pocock-skills` in Day 1 Session 2.
 
 Do not edit the files in `legacy/` during the workshop. They are the reference for the migration.
 
